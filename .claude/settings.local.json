@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "Bash(python -c:*)",
+      "Bash(unzip:*)",
+      "Bash(pip install:*)",
+      "Bash(where:*)",
+      "Bash(conda activate:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)"
     ]
   }
 }
