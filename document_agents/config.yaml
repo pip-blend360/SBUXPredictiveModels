@@ -1,0 +1,21 @@
+# Document Writing System Configuration
+
+# Workflow Settings
+max_iterations: 10        # Maximum revision cycles before timeout
+poll_interval: 5          # Seconds between checking for human feedback
+
+# Directories
+background_dir: background/
+output_dir: output/
+skills_dir: skills/
+
+# Approval Keywords (case-insensitive)
+approval_keywords:
+  - APPROVED
+  - LGTM
+  - APPROVE
+  - ACCEPTED
+
+# Session Settings
+save_history: true        # Save version history
+auto_git_commit: false    # Auto-commit each iteration (optional)

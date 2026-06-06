@@ -4,19 +4,12 @@
 venv/
 env/
 
-# Output files
-output/
+# Output files (keep directory structure, ignore contents)
+output/*.md
+output/history/*.md
 logs/
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-dist/
-*.egg-info/
+# Note: No Python dependencies anymore - system uses markdown/YAML only
 
 # IDE
 .idea/

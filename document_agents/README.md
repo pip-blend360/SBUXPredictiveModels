@@ -1,165 +1,87 @@
-# Three-Agent Document Writing System
+# Document Writing System
 
-A collaborative document writing system with three participants:
-- **Writer Agent** - Data Science Principal who creates and revises technical documents
-- **Reviewer Agent** - Data Science Principal who reviews and provides technical feedback
-- **Human (You)** - Reviews on GitHub and provides final feedback
+A simple three-agent system for collaborative technical document creation.
 
-All three must approve before a document is finalized.
+## Overview
 
-## Setup
+Three independent agents work together:
+- **Writer Agent**: Creates and revises documents
+- **Reviewer Agent**: Provides technical peer review
+- **Human (You)**: Final review and approval
 
-1. **Install dependencies:**
-   ```bash
-   cd document_agents
-   pip install -r requirements.txt
-   ```
+## Quick Start
 
-2. **Configure API key:**
-   ```bash
-   # Option 1: Environment variable
-   export ANTHROPIC_API_KEY=your-key-here
+### 1. Add Background Materials
 
-   # Option 2: Create .env file
-   cp .env.example .env
-   # Edit .env with your API key
-   ```
+Place any reference materials in the `background/` folder:
+```bash
+background/
+├── requirements.md
+├── research_paper.pdf
+├── data_dictionary.csv
+└── ...
+```
 
-## Usage
+### 2. Run the Orchestrator
 
 ```bash
-# With inline prompt
-python -m src.main "Write a technical specification for a customer churn prediction model"
-
-# With prompt file
-python -m src.main --prompt-file requirements.md
-
-# With options
-python -m src.main --max-iterations 5 --verbose "Write a model evaluation framework"
+# Using Claude Code (or your LLM tool)
+claude-code skills/orchestrator.md --prompt "Write a technical specification for a customer churn prediction model"
 ```
 
-### Command Line Options
+### 3. Workflow
 
-| Option | Default | Description |
-|--------|---------|-------------|
-| `prompt` | - | Document requirements (positional arg) |
-| `--prompt-file` | - | Path to file containing requirements |
-| `--max-iterations` | 10 | Max revision cycles before timeout |
-| `--model` | claude-sonnet-4-20250514 | Claude model to use |
-| `--verbose`, `-v` | false | Enable detailed logging |
+The system will:
+1. Writer creates initial draft → `output/document.md`
+2. Reviewer evaluates → adds feedback to `output/feedback.md`
+3. System prompts you to review
+4. You edit `output/feedback.md`:
+   - Add `**HUMAN STATUS: APPROVED**` if ready
+   - Add `**HUMAN STATUS: NEEDS REVISION**` with feedback if not
+5. Loop continues until all three approve
 
-## Workflow
+### 4. Review Output
 
-The system follows this loop until all three parties approve:
+Final document: `output/document.md`
+Session log: `output/session_log.md`
+Version history: `output/history/`
+
+## Configuration
+
+Edit `config.yaml` to customize:
+- Max iterations
+- Directory paths
+- Approval keywords
+
+## File Structure
 
 ```
-Writer → Reviewer → [Push to GitHub] → [Review on GitHub] → [Pull] → Writer → ...
+document_agents/
+├── skills/                  # Agent prompts
+│   ├── orchestrator.md     # Main workflow
+│   ├── writer.md           # Writer agent
+│   ├── reviewer.md         # Reviewer agent
+│   └── human_instructions.md
+├── background/             # Your reference materials
+├── output/                 # Generated files
+│   ├── document.md
+│   ├── feedback.md
+│   ├── session_log.md
+│   └── history/
+├── config.yaml            # Configuration
+└── README.md              # This file
 ```
 
-### Step-by-Step
+## AI-Agnostic Design
 
-#### 1. Writer Creates/Revises Document
-The Writer agent creates an initial draft or revises based on feedback.
+This system uses markdown prompts and YAML config - no code dependencies. Works with:
+- Claude (via Claude Code, API, or Projects)
+- GPT-4 (via OpenAI API)
+- Any LLM that can read files and follow markdown instructions
 
-#### 2. Reviewer Evaluates
-The Reviewer agent provides technical feedback on methodology, accuracy, and completeness.
+## Notes
 
-#### 3. Push to GitHub
-You'll see this prompt:
-```
-============================================================
-PUSH TO GITHUB
-============================================================
-Document ready: C:\...\output\document.md
-Session log: C:\...\output\session_log.md
-
-Please push to GitHub now:
-  git add .
-  git commit -m "Iteration update"
-  git push
-
-Review the document on GitHub.
-============================================================
-
-Press ENTER when you have pushed and are ready to review on GitHub...
-```
-
-#### 4. Review on GitHub
-Review the document on GitHub. Add comments, suggest changes, etc.
-
-#### 5. Pull from GitHub
-After reviewing, you'll see:
-```
-============================================================
-PULL FROM GITHUB
-============================================================
-After reviewing on GitHub, pull any changes:
-  git pull
-
-Then edit your feedback file: C:\...\output\feedback.md
-- Type 'APPROVED' if the document is ready
-- Or provide your revision feedback
-============================================================
-
-Press ENTER when you have pulled from GitHub...
-```
-
-#### 6. Provide Feedback
-Edit `output/feedback.md`:
-- Type `APPROVED` if the document is ready
-- Otherwise, write your revision feedback
-
-Save the file and the system continues.
-
-#### 7. Loop or Complete
-- If all three approve → Document finalized
-- Otherwise → Writer revises and the loop continues
-
-## Output Files
-
-| File | Description |
-|------|-------------|
-| `output/document.md` | Current document version |
-| `output/feedback.md` | Your feedback file |
-| `output/session_log.md` | Running log of all activity |
-| `output/history/document_v1.md` | Version history |
-| `logs/session_*.log` | Detailed debug logs |
-
-## Session Log
-
-The system maintains a markdown log (`output/session_log.md`) showing what each participant did:
-
-```markdown
-# Document Writing Session Log
-**Started:** 2024-01-15 14:30:00
-
-## Original Prompt/Requirements
-[your prompt]
-
-## Session Activity
-
-### Iteration 1 - Writer (Data Science Principal)
-**Time:** 14:30:15
-**Summary:** Created initial draft. Status: Submitted for review
-
-### Iteration 1 - Reviewer (Data Science Principal)
-**Time:** 14:30:45
-**Summary:** Reviewed document. Decision: Requested revisions
-
-### Iteration 1 - Human
-**Time:** 14:35:00
-**Summary:** Reviewed document. Decision: Requested revisions
-
-...
-
-## Session Complete
-**Outcome:** CONSENSUS_REACHED
-```
-
-## Approval Keywords
-
-The system recognizes these as approval (case-insensitive):
-- `APPROVED`
-- `APPROVE`
-- `LGTM`
-- `ACCEPTED`
+- Each agent runs independently (no shared conversation state)
+- Agents communicate through files in `output/`
+- All three parties must approve for completion
+- System maintains full session history and version control
