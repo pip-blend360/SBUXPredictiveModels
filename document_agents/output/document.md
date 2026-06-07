@@ -46,7 +46,7 @@ These models will enable the business to:
 ### How It Works
 
 The framework combines State-level economics with customer-level transition probabilities:
-- Each Customer State has an associated average future value
+- Each State has an average future value
 - Each customer has a probability distribution for transitioning between States
 - Expected customer LTV = sum of (transition probabilities × State values)
 - This approach reduces variance while maintaining predictive power
@@ -132,62 +132,6 @@ The predictive models support three strategic priorities:
 - Increased campaign ROI through better targeting
 - More accurate quarterly revenue forecasts
 - Measurable lift in State-to-State transition rates from interventions
-
----
-
-## Customer States Framework Overview
-
-### State Definitions
-
-Customer States segment the base using five key dimensions:
-
-#### Value Signals (Foundation)
-- **Monetary**: Average monthly net revenue over lookback window
-- **Recency**: Days since last transaction
-
-#### Behavioral Signals
-- **SR & Discount Engagement**: Stars usage, redemption, loyalty tier activity
-- **Product Preferences**: Category depth, product exploration, daypart preferences
-- **Channel Behavior**: Mobile Order & Pay, drive-through, café usage patterns
-
-### State Hierarchy
-
-**High-Level States (6):**
-1. **Most Valuable** - Highest frequency, spend, and engagement across all dimensions
-2. **Stable** - Consistent purchasers with strong category engagement
-3. **New & Reactivated** - Recent starters/returners with developing patterns
-4. **Declining** - Previously consistent customers whose frequency is dropping
-5. **Lapsing** - Low recent activity, at risk of full disengagement
-6. **Unengaged** - No meaningful engagement in current period
-
-**Detailed States (~20):**
-Each high-level State subdivides based on behavioral signal combinations, creating actionable micro-segments for targeting.
-
-### State Characteristics
-
-From the June 2026 framework analysis:
-
-| State | Monetary | Recency | SR Engagement | Product Depth | Channel | Population | Avg. Frequency |
-|-------|----------|---------|---------------|---------------|---------|------------|----------------|
-| Most Valuable | Highest | Highest | Highest | Highest | Highest | 2.1% | >4 txns/week |
-| Stable | High | High | High | High | High | 10.6% | 2.2 txns/week |
-| New & Reactivated | Low | High | Medium | Medium | Medium | 11.2% | 1.5 txns/week |
-| Declining | Medium | Medium | Low | Low | Low | - | Decreasing |
-| Lapsing | Low | Low | Low | Low | Low | - | <0.5 txns/week |
-
-### State Value Drivers
-
-**RFMC Analysis** (June 2026 data):
-- Monetary value alone explains ~54% of future 90-day revenue (R²)
-- Adding Recency increases explanatory power to 57%
-- Behavioral features (SR, Product, Channel) add incremental 3-5% lift
-- Consistency metrics (transaction regularity) provide minimal additional value
-
-**Behavioral Insights:**
-- **Channel**: Drive-through customers have ~10% higher average order value than café
-- **Daypart**: Mid-morning (9-11am) transactions show highest revenue per ticket
-- **SR Tier**: Correlation with value, but largely redundant with frequency
-
 ---
 
 ## Proposed Predictive Models
@@ -199,13 +143,13 @@ From the June 2026 framework analysis:
 For each customer *i*, estimate expected future value over a planning horizon *H*:
 
 ```
-LTV_i(H) = E[Revenue_i | t, t+H]
+$$ LTV_i(H) = E[Revenue_i | t, t+H] $$
 ```
 
 Where:
 - *H* = planning horizon (e.g., 90 days, 365 days)
 - *t* = current time/scoring date
-- Revenue includes net discounted revenue (after Stars redemptions, discounts)
+- Revenue is net discounted revenue (after Stars redemptions, discounts)
 
 #### Estimation Approach
 
