@@ -41,3 +41,22 @@ Write a technical specification for the LTV and transition-probability models de
 - Document ready for implementation
 - Minor optional enhancements suggested but not required
 
+### 2026-06-07 - Human Review Iteration 2
+- Human reviewer (Pip Courbois) provided feedback on approved document:
+  1. LaTeX formatting working well
+  2. Remove underscores from \text{} blocks (GitHub rendering issue)
+  3. Increase zero-probability transition threshold from 0.1% to 1%
+
+### 2026-06-07 - Writer Revision (v2.2)
+- Writer Agent completed minor formatting fixes
+- Removed all underscores from \text{} blocks (replaced with spaces)
+- Updated zero-probability transition threshold: <0.1% → <1%
+- All LaTeX equations now compatible with GitHub markdown renderer
+
+### 2026-06-07 - Iteration 3 Independent Review
+- Independent Reviewer Agent completed verification review of v2.2
+- **Status: APPROVED ✅**
+- Verified all v2.2 changes properly implemented
+- Document is production-ready
+- Minor observation: Version number on line 3 should be updated to v2.2 (cosmetic only)
+
