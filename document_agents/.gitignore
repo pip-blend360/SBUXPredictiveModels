@@ -4,10 +4,6 @@
 venv/
 env/
 
-# Output files (keep directory structure, ignore contents)
-output/history/*.md
-logs/
-
 # Note: No Python dependencies anymore - system uses markdown/YAML only
 
 # IDE
