@@ -1,3 +1,13 @@
+# Human - Iteration 2
+
+**Human** Pip Courbois
+**Date** 2026-06-07
+
+## Review
+* Writing the equations this way really helps.
+* In my version of github the "_" only works in math mode, so when you have "\text{avg_monthly_revenue}" it errors out. Could you remove "_" from any "\text{}" block.
+* Could you make the cutoff for zero-probability transitions more like 1% or even 5%?
+
 # Human - Iteration 1
 
 **Human** Pip Courbois
