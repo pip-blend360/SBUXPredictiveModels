@@ -4,7 +4,9 @@
 **Date** 2026-06-07
 
 ## Review
-* 
+* Both models require predictions at the customer and State level. I think everything is fine except how we estimate the State-level transitions.
+* The document is very redundant. The first few sections should try not to repeat a lot of information.
+* Please shift all the equations to LaTex format in github preffered markdown. 
 
 # Review - Iteration 1
 
