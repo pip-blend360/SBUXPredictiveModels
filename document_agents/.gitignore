@@ -5,7 +5,6 @@ venv/
 env/
 
 # Output files (keep directory structure, ignore contents)
-output/*.md
 output/history/*.md
 logs/
 
