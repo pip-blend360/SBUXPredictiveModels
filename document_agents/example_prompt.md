@@ -5,7 +5,7 @@ This file contains example prompts you can use with the document writing system.
 ## Example 1: Technical Specification
 
 ```
-Write a technical specification document for a Starbucks customer churn prediction model.
+Write a technical specification document for a customer churn prediction model.
 
 The document should include:
 - Problem statement and business objectives

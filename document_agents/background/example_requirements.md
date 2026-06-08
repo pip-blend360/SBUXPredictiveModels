@@ -1,7 +1,7 @@
 # Example Requirements - Customer Churn Prediction Model
 
 ## Project Overview
-Build a predictive model to identify customers at risk of churning from the Starbucks Rewards program.
+Build a predictive model to identify customers at risk of churning from a subscription or loyalty program.
 
 ## Objectives
 1. Predict customer churn probability with 85%+ accuracy
