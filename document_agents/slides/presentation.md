@@ -1,8 +1,7 @@
 ---
 marp: true
-theme: default
+theme: starbucks
 paginate: true
-backgroundColor: #fff
 ---
 
 <!-- _class: lead -->
