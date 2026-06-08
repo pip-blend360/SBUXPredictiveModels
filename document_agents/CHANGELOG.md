@@ -2,6 +2,41 @@
 
 ## Template Branch - 2026-06-08
 
+### Enhanced Reviewer Rigor (Hybrid Approach)
+
+Updated `skills/reviewer.md` to maintain consistent review standards across iterations.
+
+**Problem:** Reviewers became lenient in later iterations, approving after seeing improvement rather than evaluating absolute quality.
+
+**Solution - Hybrid Approach:**
+
+1. **Independent Review Protocol**
+   - Clear instructions to review with first-time rigor
+   - Explicit reminder: "Progress ≠ Approval"
+   - Standard: "Would I approve this for production if I'd never seen it before?"
+
+2. **Structured Evaluation Framework**
+   - 6 dimensions scored independently (❌/⚠️/✅)
+   - Technical Accuracy, Methodological Rigor, Completeness, Clarity, Feasibility, Best Practices
+   - All dimensions must be ✅ or ⚠️ for approval
+
+3. **Strict Approval Criteria**
+   - Cannot approve based on improvement alone
+   - Must meet production quality standards
+   - Any ❌ score requires NEEDS REVISION
+
+4. **Calibration Reminders**
+   - "Finding 2-3 issues per iteration is normal"
+   - "Zero issues may indicate insufficient scrutiny"
+   - Maintains high quality bar throughout iterations
+
+5. **Context Management**
+   - Reviewer reads previous feedback (to avoid repetition)
+   - But must not be influenced by historical progress
+   - Evaluates document as it stands today
+
+**Result:** Reviewers now maintain consistent rigor across all iterations, ensuring high-quality final documents.
+
 ### Created Generic Template
 
 Cleaned up the document writing system to create a reusable template without project-specific content.
